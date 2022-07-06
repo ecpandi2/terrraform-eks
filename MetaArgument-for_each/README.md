@@ -93,8 +93,7 @@ terraform plan
 terraform apply -auto-approve
 Observations: 
 1) Should fail with not creating EC2 Instance in 1 availability zone in region us-east-1
-2) We will learn about fixing this in next two sections 05-03 and 05-04
-3) Outputs not displayed as we failed during terraform apply. We will see and review outputs in section 05-04
+2) Outputs not displayed as we failed during terraform apply. We will see and review outputs
 ```
 
 ## Step-06: Expected Error Message
