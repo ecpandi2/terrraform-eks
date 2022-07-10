@@ -9,7 +9,7 @@ data "terraform_remote_state" "eks" {
 */
 # Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
-  backend = "s3"
+  backend = "remote"
   config = {
     bucket = "terraform-pandiyan"
     key    = "dev/eks-cluster/terraform.tfstate"
