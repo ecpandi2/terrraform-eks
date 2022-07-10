@@ -7,17 +7,17 @@ terraform {
       version = "4.21.0"
     }
     kubernetes = {
-      source = "hashicorp/kubernetes"
+      source  = "hashicorp/kubernetes"
       version = "2.12.1"
     }
   }
-    # Adding Backend as S3 for Remote State Storage
+  # Adding Backend as S3 for Remote State Storage
   backend "s3" {
     bucket = "terraform-pandiyan"
     key    = "dev/app1k8s/terraform.tfstate"
-    region = "us-east-1" 
+    region = "us-east-1"
 
     # For State Locking
-    dynamodb_table = "dev-app1k8s"    
-  }    
+    dynamodb_table = "dev-app1k8s"
+  }
 }
