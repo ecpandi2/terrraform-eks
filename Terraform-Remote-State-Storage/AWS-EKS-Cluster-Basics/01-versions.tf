@@ -7,15 +7,15 @@ terraform {
       version = "4.21.0"
     }
   }
-  
+
   backend "s3" {
     bucket = "terraform-pandiyan"
     key    = "dev/eks-cluster/terraform.tfstate"
-    region = "us-east-1" 
- 
+    region = "us-east-1"
+
     # For State Locking
-    dynamodb_table = "dev-ekscluster"    
-  }  
+    dynamodb_table = "dev-ekscluster"
+  }
 }
 
 
