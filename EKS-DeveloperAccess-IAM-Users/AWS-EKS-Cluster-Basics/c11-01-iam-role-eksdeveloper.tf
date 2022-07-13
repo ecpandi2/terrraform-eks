@@ -50,7 +50,7 @@ resource "aws_iam_role" "eks_developer_role" {
   }
 }
 
-/*
+
 ## ENABLE DURING STEP-24 of the DEMO ## 
 # Associate IAM Policy to IAM Role
 resource "aws_iam_role_policy_attachment" "eks-developrole-s3fullaccess" {
@@ -62,4 +62,3 @@ resource "aws_iam_role_policy_attachment" "eks-developrole-dynamodbfullaccess" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
   role       = aws_iam_role.eks_developer_role.name
 }
-*/
