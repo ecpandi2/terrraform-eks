@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "terraform-pandiyan"
+    bucket = "terraform-pandiyan1"
     key    = "dev/eks-cluster/terraform.tfstate"
     region = "us-east-1"
 
