@@ -1,10 +1,10 @@
 # Kubernetes Service Manifest (Type: Load Balancer)
-resource "kubernetes_ingress_v1" "ingress_app1" {
+resource "kubernetes_ingress_v1" "ingress" {
   metadata {
-    name = "app1-ingress"
+    name = "ingress-target-type-ip-demo"
     annotations = {
       # Load Balancer Name
-      "alb.ingress.kubernetes.io/load-balancer-name" = "ingress-groups-demo"
+      "alb.ingress.kubernetes.io/load-balancer-name" = "target-type-ip-ingress"
       # Ingress Core Settings
       "alb.ingress.kubernetes.io/scheme" = "internet-facing"
       # Health Check Settings
@@ -26,15 +26,23 @@ resource "kubernetes_ingress_v1" "ingress_app1" {
       # SSL Redirect Setting
       "alb.ingress.kubernetes.io/ssl-redirect" = 443
       # External DNS - For creating a Record Set in Route53
-      "external-dns.alpha.kubernetes.io/hostname" = "tfingress-groups-demo102.cmcloudlab0814.info"
-      # Ingress Groups
-      "alb.ingress.kubernetes.io/group.name" = "myapps.web"
-      "alb.ingress.kubernetes.io/group.order" = 10
+      "external-dns.alpha.kubernetes.io/hostname" = "tftarget-type-ip-501.cmcloudlab0814.info"
+      # Target Type: IP (Defaults to Instance if not specified)
+      "alb.ingress.kubernetes.io/target-type" = "ip"
     }    
   }
 
   spec {
     ingress_class_name = "my-aws-ingress-class" # Ingress Class        
+    # Default Rule: Route requests to App3 if the DNS is "tfdefault101.cmcloudlab0814.info"        
+    default_backend {
+      service {
+        name = kubernetes_service_v1.myapp3_np_service.metadata[0].name
+        port {
+          number = 80
+        }
+      }
+    }
     rule {
       http {
         path {
@@ -47,6 +55,19 @@ resource "kubernetes_ingress_v1" "ingress_app1" {
             }
           }
           path = "/app1"
+          path_type = "Prefix"
+        }
+
+        path {
+          backend {
+            service {
+              name = kubernetes_service_v1.myapp2_np_service.metadata[0].name
+              port {
+                number = 80
+              }
+            }
+          }
+          path = "/app2"
           path_type = "Prefix"
         }
       }
