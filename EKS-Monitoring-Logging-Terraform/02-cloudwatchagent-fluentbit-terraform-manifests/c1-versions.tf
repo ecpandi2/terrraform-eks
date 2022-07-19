@@ -21,7 +21,7 @@ terraform {
   }
   # Adding Backend as S3 for Remote State Storage
   backend "s3" {
-    bucket = "terraform-pandiyan"
+    bucket = "terraform-pandiyan1"
     key    = "dev/eks-cloudwatch-agent/terraform.tfstate"
     region = "us-east-1" 
 
